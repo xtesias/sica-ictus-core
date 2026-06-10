@@ -1,0 +1,15 @@
+{
+  "name": "@/runner",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "uv run python -m src.main",
+    "build": "uv sync",
+    "start": "uv run python -m src.main",
+    "lint": "uv run ruff check src tests",
+    "format": "uv run ruff format src tests",
+    "type-check": "uv run mypy src",
+    "test": "uv run pytest",
+    "clean": "rm -rf .venv .pytest_cache .ruff_cache .mypy_cache __pycache__"
+  }
+}
