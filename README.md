@@ -1,4 +1,4 @@
-# Bug Bounty Platform
+# SICA ICTUS
 
 > A systematic knowledge management and ML-augmented hunting platform for DeFi vulnerability research.
 
