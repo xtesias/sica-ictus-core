@@ -49,7 +49,7 @@ The platform has six functional layers, built across eight phases. End state:
 ┌──────────────────────────────┴─────────────────────────────────┐
 │  WORKERS · ML · INGESTION                                      │
 │                                                                │
-│   Ingestion fetchers (Solodit, Immunefi, rekt, HackLabs, C4,   │
+│   Ingenefi, restion fetchers (Solodit, Immukt, HackLabs, C4,   │
 │   Sherlock) · Embedder (sentence-transformers) · Classifier    │
 │   (DistilBERT) · Recommender (LightGBM + SHAP)                 │
 └────────────────────────────────────────────────────────────────┘
