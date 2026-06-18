@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: sica-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-sica-ictus}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sica-ictus-dev}
+      POSTGRES_DB: ${POSTGRES_DB:-sica-ictus}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sica-ictus} -d ${POSTGRES_DB:-sica-ictus}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: sica-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    name: sica-ictus_postgres_data
+  redis_data:
+    name: sica-ictus_redis_data
