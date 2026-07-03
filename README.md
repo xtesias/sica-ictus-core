@@ -361,22 +361,8 @@ The principle: this platform supports the *thinking* part of vulnerability resea
 
 ---
 
-## Status
-
-**Phase 0 — Scaffolding.** Repo structure, Docker, auth feature flag, worker plumbing. In progress.
-
-Track current work in [Linear](https://linear.app/) under the Platform team.
-
----
-
 ## License
 
 UNLICENSED — private project. Not for redistribution.
 
----
 
-## Contact
-
-Author: Kamal — pivoting from cybersecurity research into quantitative finance, building this as both working tool and portfolio artifact.
-
-For substantial questions about the methodology or architecture, see `docs/` first. The bug-hunting framework HTML in particular contains 10 sections of conceptual grounding that this platform implements.

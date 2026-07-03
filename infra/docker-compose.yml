@@ -33,6 +33,32 @@ services:
       retries: 5
     restart: unless-stopped
 
+  api:
+      build:
+        context: ..
+        dockerfile: infra/Dockerfile.api.dev
+      container_name: sica-api
+      ports:
+        - "8000:8000"
+      environment:
+        DATABASE_URL: postgresql+asyncpg://sica-ictus:sica-ictus-dev@postgres:5432/sica-ictus
+        REDIS_URL: redis://redis:6379
+        JWT_SECRET: ${JWT_SECRET}
+        SINGLE_USER_MODE: ${SINGLE_USER_MODE:-true}
+        ENVIRONMENT: development
+        LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      depends_on:
+        postgres:
+          condition: service_healthy
+        redis:
+          condition: service_healthy
+      volumes:
+        # Mount source code for hot reload
+        - ../apps/api/src:/app/src
+        # Anonymous volume for .venv so the host venv doesn't shadow the container's
+        - /app/.venv
+      restart: unless-stopped
+
 volumes:
   postgres_data:
     name: sica-ictus_postgres_data
